@@ -50,7 +50,6 @@ function Slider(){
 
     return(
         <div id="Slider" style={{backgroundImage:`url(${ImagesData[currentIndex].URL})`}} >
-            <Navbar id="Navbar"></Navbar>
             <div id="HeadlineContainer">
                 <div id="TitleContainer">
                     <p id="Heading">{ImagesData[currentIndex].Title}</p>

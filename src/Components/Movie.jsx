@@ -1,14 +1,14 @@
 import { memo } from 'react'
-import '../Styles/MoviesStyles.css'
+import Styling from '../Styles/MovieStyle.module.css'
 function Movie(props){
     return(
-        <div id="MovieContainer">
-            <div id='ImageContainer'>
-                <img src={props.uData.Image}></img>  
+        <div id={Styling.MovieContainer}>
+            <div id={Styling.ImageContainer}>
+                <img id={Styling.Mimg} src={props.uData.Image}></img>  
             </div>
-          <label>{props.uData.Title}</label>        
-          <label style={{fontWeight:"lighter",opacity:"0.6"}}>{props.uData.Type}</label>  
-          <div id='Rating'>{props.uData.Rating}</div>
+          <label className={Styling.Mlabel}>{props.uData.Title}</label>        
+          <label className={Styling.Mlabel} style={{fontWeight:"lighter",opacity:"0.6"}}>{props.uData.Type}</label>  
+          <div id={Styling.Rating}>{props.uData.Rating}</div>
         </div>
     )
 }
