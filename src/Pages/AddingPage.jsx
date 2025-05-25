@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import {v4 as uuid} from "uuid"
 import Styling from "../Styles/AddingPage.module.css"
 import { MoviesContext } from "../Context/MoviesProvider";
@@ -24,9 +24,15 @@ let nav =useNavigate();
     };
 
     let Submit= ()=>{
-        SetMoviesData([...MoviesData,Movie]);
+        SetMoviesData([...MoviesData,{...Movie,id:uuid()}]);
         nav('/Browse', { state: { fromAddMovie: true } });
     }
+    let ClassName ={
+        SubTitle: "text-center my-[150px] mx-auto mb-[50px]",
+        FormContainer: "w-[50vw] h-[60vh] mx-auto my-[80px] bg-[rgb(43,49,64) ]",
+        FormInput: "",
+        FormInputsCon: ""
+    };
     return (
         <>
             <div id={Styling.FormContainer} >

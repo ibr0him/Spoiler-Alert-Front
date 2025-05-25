@@ -1,5 +1,4 @@
 import { useContext ,useEffect} from 'react';
-import '../Styles/HomePage.css'
 import { MoviesContext } from '../Context/MoviesProvider';
 import Movie from '../Components/Movie';
 import { useLocation } from 'react-router';
@@ -16,9 +15,12 @@ const BrowsePage = () => {
     }, [location]);
 
     let {MoviesData} = useContext(MoviesContext);
+     let ClassName ={
+        MoviesContainer:"flex flex-wrap my-[100px] mx-auto w-full justify-center gap-y-3.5"
+    };
     return (
         <>
-            <div id="MoviesContainer">
+            <div className={ClassName.MoviesContainer}>
                 {MoviesData.map((Mov)=><Movie uData={Mov} key={Mov.id}></Movie>)}
             </div>
         </>
