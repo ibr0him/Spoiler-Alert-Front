@@ -35,7 +35,7 @@ The app will run at [http://localhost:3000](http://localhost:3000).
 - React Router
 - Tailwind CSS
 - Axios (for API calls)
-- Context API / Redux (if used)
+- Context API / Redux
 
 ## 📁 Project Structure
 
