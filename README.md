@@ -27,7 +27,7 @@ npm install
 npm start
 ```
 
-The app will run at [http://localhost:3000](http://localhost:3000).
+The app will run at [http://localhost:5173](http://localhost:5173).
 
 ## 🛠 Tech Stack
 
@@ -48,7 +48,14 @@ src/
 ```
 
 ## 📸 Screenshots
-*(Will be Added Soon)*
+<img src="src/assets/Github/Login.png">
+<img src="src/assets/Github/Home-1.png">
+<img src="src/assets/Github/Home-2.png">
+<p>
+  <img src="src/assets/Github/Mobile-3.png" width="32%" hspace="5">
+  <img src="src/assets/Github/Mobile-1.png" width="32%" hspace="5">
+  <img src="src/assets/Github/Mobile-2.png" width="32%" hspace="5">
+</p>
 
 ## 🧑‍💻 Authors
 
