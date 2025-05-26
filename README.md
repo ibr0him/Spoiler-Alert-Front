@@ -52,9 +52,9 @@ src/
 <img src="src/assets/Github/Home-1.png">
 <img src="src/assets/Github/Home-2.png">
 <p>
-  <img src="src/assets/Github/Mobile-3.png" width="32%" hspace="5">
-  <img src="src/assets/Github/Mobile-1.png" width="32%" hspace="5">
-  <img src="src/assets/Github/Mobile-2.png" width="32%" hspace="5">
+  <img src="src/assets/Github/Mobile-3.png" width="31.5%" hspace="5">
+  <img src="src/assets/Github/Mobile-1.png" width="31.5%" hspace="5">
+  <img src="src/assets/Github/Mobile-2.png" width="31.5%" hspace="5">
 </p>
 
 ## 🧑‍💻 Authors
