@@ -1,5 +1,14 @@
 import { memo } from 'react'
+import { useNavigate } from 'react-router';
+
 function Movie(props){
+    
+    let nav = useNavigate();
+
+    let NaviageToMoviePage=()=>{
+        nav('/Movie/'+props.uData.id);
+    }
+
     let ClassName={
         MovieContainer:"flex flex-col gap-[10px] items-start w-[250px] h-[470px] my-0 mx-[50px] hover:scale-[1.2]",
         ImageContainer: "flex flex-col items-center w-full h-[70%] overflow-hidden cursor-pointer",
@@ -9,7 +18,7 @@ function Movie(props){
     };
     return(
         <div className={ClassName.MovieContainer} >
-            <div className={ClassName.ImageContainer} style={{boxShadow:"2px 2px 15px 1px black"}}>
+            <div className={ClassName.ImageContainer} style={{boxShadow:"2px 2px 15px 1px black"}} onClick={NaviageToMoviePage}>
                 <img className={ClassName.Mimg} src={props.uData.Image}></img>  
             </div>
           <label className={ClassName.Mlabel}>{props.uData.Title}</label>        

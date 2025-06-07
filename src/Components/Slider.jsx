@@ -29,7 +29,7 @@ function Slider() {
         }
     ];
 
-     const [currentIndex, setCurrentIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [prevIndex, setPrevIndex] = useState(null);
     const [animating, setAnimating] = useState(false);
     const [isVisible, setIsVisible] = useState(true);

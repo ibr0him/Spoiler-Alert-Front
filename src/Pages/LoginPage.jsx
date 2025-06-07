@@ -16,9 +16,9 @@ const LoginPage = () => {
         ImgStyle:"h-[70vw] xl:h-[35vw] rounded-2xl",
         Form:"flex flex-col gap-4  w-full items-center",
         Title:"font-bold text-[40px] w-fit mb-[2vw]",
-        TField:"px-4 py-3 w-full bg-black/15 rounded-sm",
+        TField:"px-4 py-4 w-full outline-none bg-black/15 rounded-sm",
         RemField:"ml-2 flex gap-2 self-start",
-        LogBtn:"bg-[#24b1bf] rounded-md text-white font-bold text-xl lg:text-3xl w-full xl:w-[70%] py-4 mt-[3vw] mb-[50px] xl:mb-0"
+        LogBtn:"bg-[#24b1bf] rounded-md text-white font-bold text-xl lg:text-3xl w-full xl:w-[70%] py-4 mt-[3vw] mb-[50px] xl:mb-0 cursor-pointer"
     };
     return (
         <>
