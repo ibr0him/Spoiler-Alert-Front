@@ -1,14 +1,17 @@
 import { useContext,useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { MoviesContext } from '../Context/MoviesProvider';
 
 function Navbar(){
 
-    let {Signin,SetSignin}=useContext(MoviesContext);
+    let {Signin,SetSignin,IsAdmin,setIsAdmin}=useContext(MoviesContext);
     const [menuOpen, setMenuOpen] = useState(false);
-    
+    let nav = useNavigate();
+
     let Logout =()=>{
         SetSignin(false);
+        setIsAdmin(null);
+        nav('/');    
         ToggleMenu();
     }
     let ToggleMenu = ()=>{
@@ -19,7 +22,7 @@ function Navbar(){
         Container:"relative w-full flex items-center px-[20px] sm:px-[50px] mr-[50px] mt-[30px] justify-between z-4",
         Title:"text-[40px] lg:text-[50px] font-bold w-fit",
         NvContainer:"hidden md:flex gap-[40px] items-center z-2 w-fit",
-        NvLabel:"text-xl font-bold hover:bg-[#24b1bf] hover:px-4 hover:py-3 hover:rounded-md hover:shadow-sm",
+        NvLabel:"text-xl font-bold hover:bg-[#24b1bf] hover:px-4 hover:py-3 hover:rounded-md hover:shadow-sm cursor-pointer",
 
         //Hamburger Icon
         HamCon:"flex md:hidden flex-col gap-3 w-[60px] cursor-pointer",
@@ -36,8 +39,12 @@ function Navbar(){
                 <Link className={ClassName.NvLabel} to="/Login" onClick={ToggleMenu}>Login</Link>
                 <Link className={ClassName.NvLabel} to="/Register" onClick={ToggleMenu}>Register</Link>
             </>}
-            {Signin && <>
+            {Signin && IsAdmin && <>
                 <Link className={ClassName.NvLabel} to="/Add" onClick={ToggleMenu}>Add</Link>
+                <span className={ClassName.NvLabel} onClick={Logout}>Logout</span>
+            </>}
+            {Signin && !IsAdmin && <>
+                <Link className={ClassName.NvLabel} to="/MyReviews" onClick={ToggleMenu}>My Reviews</Link>
                 <span className={ClassName.NvLabel} onClick={Logout}>Logout</span>
             </>}
         </>

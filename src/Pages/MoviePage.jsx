@@ -1,30 +1,79 @@
-import { useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import CSS from "../Styles/CustomCss.module.css";
 import { IoPlayCircleOutline } from "react-icons/io5";
 import { Link, Outlet, useParams } from "react-router";
+import { MoviesContext } from "../Context/MoviesProvider";
+import MovieDetailsModel from "../Models/Movie Models/MovieDetailsModel";
+import MovieService from "../Services/movieService";
 
 const MoviePage = () => {
 
-    let Images =
-        [
-            "https://4kwallpapers.com/images/wallpapers/venom-marvel-comics-marvel-superheroes-black-background-4480x2520-7311.jpg",
-            "https://wallpapercat.com/w/full/5/e/1/169887-1920x1080-desktop-full-hd-venom-wallpaper-photo.jpg",
-            "https://img.youtube.com/vi/VWqJifMMgZE/hqdefault.jpg"
-        ];
-    const {id} = useParams();
-    let MenuItems=["Description","Crew Members","Production Companies","Reviews"];
-    const [MenuIndex, setMenuIndex] = useState(0);
+   
+    const { id } = useParams();
+    let MenuItems = [
+        {
+            id:"1Menu",
+            Content:"Description"
+        }, 
+        {
+            id:"2Menu",
+            Content:"Crew Members"
+        }, 
+        {
+            id:"3Menu",
+            Content:"Production Companies"
+        }, 
+        {
+            id:"4Menu",
+            Content:"Reviews"
+        }, 
+        
+    ];
+    const [MenuIndex, setMenuIndex] = useState("1Menu");
     const [Index, setIndex] = useState(0);
+    const { MoviesData, ClickedMovie, setClickedMovie, message } = useContext(MoviesContext);
+    const [Images, setImages] = useState([]);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        if (ClickedMovie.id != null) {
+            setImages([
+                ClickedMovie.sources.img1,
+                ClickedMovie.sources.img2,
+                `https://img.youtube.com/vi/${ClickedMovie.sources.video.split('=')[1]}/hqdefault.jpg`
+            ]);
+            const lastUrlpart = window.location.href.split('/').at(-1);
+            if(lastUrlpart == "Reviews")
+                setMenuIndex("4Menu");
+            if(lastUrlpart.includes('Companies'))
+                setMenuIndex("3Menu");
+            if(lastUrlpart.includes('Crew'))
+                setMenuIndex("2Menu");
+           
+        }
+        if(Object.keys(ClickedMovie).length === 0 || ClickedMovie.id !== id ){
+            const fetchData = async () => {
+            let loaded = await MovieService.getMovieDetails(id, { message, MoviesData, setClickedMovie });
+            if(!loaded)
+                setError('Error Fetching Movie');
+                    };
+
+            fetchData();
+        
+        }
+    }, [ClickedMovie]);
 
     let ClassName = {
-        Container: "absolute top-0 w-full h-[90%] bg-cover bg-center "+ CSS.mainBoxShadow,
+        Container: "absolute top-0 w-full h-[90%] bg-cover bg-center " + CSS.mainBoxShadow,
         ThumbnailContainer: "absolute top-[85%] left-[50%] translate-x-[-50%] flex gap-8 w-[90%] xl:w-[60%] h-[180px] mx-auto",
         Thumbnail: "w-[30%] h-full rounded-2xl bg-cover bg-center cursor-pointer overflow-hidden " + CSS.mainBoxShadow,
-        Menu: "flex flex-col mt-[100vh] mb-[50px] w-[95%] gap-4 pl-8",
+        Menu: "flex flex-col mt-[100vh] mb-[50px] w-full sm:w-[95%] gap-4 pl-0 sm:pl-8",
         MenuItem: "text-[15px] md:text-[20px] lg:text-[30px] font-bold text-center",
         Line: "relative z-1 w-full h-2 rounded-full bg-[#22ebff]",
-        DynamicSec: "w-[95%] pl-8 mb-[100px]"
+        DynamicSec: "w-full sm:w-[95%] pl-0 sm:pl-8 mb-[100px]"
     };
+
+    if (error) return <div>Error: {error}</div>;
 
     return (
         <>
@@ -34,7 +83,7 @@ const MoviePage = () => {
                     <iframe
                         width="100%"
                         height="100%"
-                        src="https://www.youtube.com/embed/VWqJifMMgZE"
+                        src={`https://www.youtube.com/embed/${ClickedMovie.sources.video.split('=')[1]}`}
                         title="YouTube video"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
@@ -70,16 +119,15 @@ const MoviePage = () => {
             </div>
             <div className={ClassName.Menu}>
                 <div className="flex items-center gap-10">
-                    {MenuItems.map((item,i)=>(
-                        <div className="flex flex-col gap-4">
-                            <Link 
-                            className={ClassName.MenuItem}
-                            key={i}
-                            to = {item=="Description"?`/Movie/${id}`:item}
-                            style={{color: MenuIndex==i ? "#22ebff" : "white"}}
-                            onClick={()=>setMenuIndex(i)}
-                            >{item}</Link>
-                            <div className={ClassName.Line} style={{visibility:MenuIndex==i ? "visible":"hidden"}}></div>
+                    {MenuItems.map((item) => (
+                        <div className="flex flex-col gap-4"  key={item.id}>
+                            <Link
+                                className={ClassName.MenuItem}
+                                to={item.Content == "Description" ? `/Movie/${id}` : item.Content}
+                                style={{ color: MenuIndex == item.id ? "#22ebff" : "white" }}
+                                onClick={() => setMenuIndex(item.id)}
+                            >{item.Content}</Link>
+                            <div className={ClassName.Line} style={{ visibility: MenuIndex == item.id ? "visible" : "hidden" }}></div>
                         </div>
                     ))}
                 </div>

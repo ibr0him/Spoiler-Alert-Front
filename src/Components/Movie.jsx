@@ -19,11 +19,11 @@ function Movie(props){
     return(
         <div className={ClassName.MovieContainer} >
             <div className={ClassName.ImageContainer} style={{boxShadow:"2px 2px 15px 1px black"}} onClick={NaviageToMoviePage}>
-                <img className={ClassName.Mimg} src={props.uData.Image}></img>  
+                <img className={ClassName.Mimg} src={props.uData.posterImage}></img>  
             </div>
-          <label className={ClassName.Mlabel}>{props.uData.Title}</label>        
-          <label className={ClassName.Mlabel} style={{fontWeight:"lighter",opacity:"0.6"}}>{props.uData.Type}</label>  
-          <div className={ClassName.Rating}>{props.uData.Rating}</div>
+          <label className={ClassName.Mlabel}>{props.uData.title}</label>        
+          <label className={ClassName.Mlabel} style={{fontWeight:"lighter",opacity:"0.6"}}>{props.uData.genres}</label>  
+          <div className={ClassName.Rating}>{props.uData.rating}</div>
         </div>
     )
 }

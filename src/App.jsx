@@ -14,6 +14,7 @@ import Details from './Components/Movie Page Components/Details'
 import Reviews from './Components/Movie Page Components/Reviews'
 import Cast from './Components/Movie Page Components/Cast'
 import Companies from './Components/Movie Page Components/Companies'
+import MyReviews from './Pages/MyReviews'
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         {index:true,element:<HomePage></HomePage>},
         {path:'Browse',element:<BrowsePage></BrowsePage>},
         {path:'Add',element:<AddingPage></AddingPage>},
+        {path:'MyReviews',element:<MyReviews></MyReviews>},
         {path:'Login',element:<LoginPage></LoginPage>},
         {path:'Register',element:<RegisterPage></RegisterPage>},
         {path:'*',element:<ErrorPage></ErrorPage>},

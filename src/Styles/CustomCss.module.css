@@ -1,3 +1,10 @@
+/* -------------------------------------------------- Global -------------------------------------------------- */
+
+.mainBoxShadow{
+  box-shadow: #000000bf 0px 0px 15px 0.5px;
+}
+
+/* -------------------------------------------------- Add Movie Page -------------------------------------------------- */
 .darkScrollbar::-webkit-scrollbar {
   width: 10px;
 }
@@ -20,6 +27,14 @@
 .darkScrollbar {
   scrollbar-color: #9f9f9f #2c2c2c;
 }
-.mainBoxShadow{
-  box-shadow: #000000bf 0px 0px 15px 0.5px;
+
+/* -------------------------------------------------- Movie Page (Reviews Section) -------------------------------------------------- */
+
+.ReviewBody{
+  width: 350px;
+}
+@media (min-width:500px) {
+  .ReviewBody{
+  width: 100%;
+}
 }

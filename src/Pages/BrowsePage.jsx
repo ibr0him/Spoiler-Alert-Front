@@ -22,7 +22,7 @@ const BrowsePage = () => {
             setSearchResult(MoviesData);
         setSearchResult(
             MoviesData.filter((item) =>
-                item.Title.toLowerCase().includes(e.target.value.toLowerCase())
+                item.title.toLowerCase().includes(e.target.value.toLowerCase())
             )
         );
     }
